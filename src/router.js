@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "@/views/Home.vue";
-import About from "@/views/About.vue";
+import Dashboard from "@/views/Dashboard.vue";
+import Devices from "@/views/Devices.vue";
+import Tickets from "@/views/Tickets.vue";
 
 Vue.use(Router);
 
@@ -11,13 +12,18 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      name: "dashboard",
+      component: Dashboard
     },
     {
-      path: "/about",
-      name: "about",
-      component: About
+      path: "/devices",
+      name: "devices",
+      component: Devices
+    },
+    {
+      path: "/tickets",
+      name: "tickets",
+      component: Tickets
     }
   ]
 });
