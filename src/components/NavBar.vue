@@ -11,6 +11,27 @@
         <span>Management</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+
+      <Popup />
+
+      <!-- menu button -->
+      <v-menu offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn color="primary" dark v-on="on">Menu</v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(link, index) in links"
+            :key="index"
+            router
+            :to="{ name: link.route }"
+          >
+            <v-list-item-title>{{ link.text }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
+      <!-- Sign out -->
       <v-btn text class="grey--text">
         <span left>Sign Out</span>
         <v-icon right>mdi-exit-to-app</v-icon>
@@ -19,6 +40,19 @@
 
     <!-- Nav-drawer -->
     <v-navigation-drawer v-model="appDrawer" class="primary" app>
+      <!-- avatar -->
+      <v-layout align-center column>
+        <v-flex class="text-center mt-5">
+          <v-avatar size="60">
+            <img
+              src="https://www.uni-regensburg.de/Fakultaeten/phil_Fak_II/Psychologie/Psy_II/beautycheck/english/prototypen/w_sexy_gr.jpg"
+              alt="Avatar"
+            />
+          </v-avatar>
+          <p class="white--text subheading mt-1">This is you!</p>
+        </v-flex>
+      </v-layout>
+
       <!-- Link list -->
       <v-list nav>
         <v-list-item
@@ -42,6 +76,7 @@
 </template>
 
 <script>
+import Popup from "@/components/Popup.vue";
 export default {
   data() {
     return {
@@ -52,6 +87,9 @@ export default {
         { icon: "receipt", text: "Tickets", route: "tickets" }
       ]
     };
+  },
+  components: {
+    Popup
   }
 };
 </script>
