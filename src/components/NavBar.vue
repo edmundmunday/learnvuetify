@@ -1,5 +1,9 @@
 <template>
   <div>
+    <v-snackbar v-model="snackbar" color="success" right>
+      {{ text }}
+      <v-btn text @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
     <!-- App header bar -->
     <v-app-bar app>
       <v-app-bar-nav-icon
@@ -12,7 +16,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <Popup />
+      <Popup @success="deviceAdded" />
 
       <!-- menu button -->
       <v-menu offset-y>
@@ -85,11 +89,19 @@ export default {
         { icon: "view-dashboard", text: "Dashboard", route: "dashboard" },
         { icon: "cellphone", text: "Devices", route: "devices" },
         { icon: "receipt", text: "Tickets", route: "tickets" }
-      ]
+      ],
+      snackbar: false,
+      text: "Hello, I'm a snackbar"
     };
   },
   components: {
     Popup
+  },
+  methods: {
+    deviceAdded() {
+      this.text = "Device Successfully Added!";
+      this.snackbar = true;
+    }
   }
 };
 </script>

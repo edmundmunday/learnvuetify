@@ -63,9 +63,9 @@
           </v-flex>
           <v-flex xs3>
             <div>
-              <v-chip :color="ticket.color" class="caption my-2" small>{{
-                ticket.status
-              }}</v-chip>
+              <v-chip :color="ticket.color" class="caption my-2" small>
+                {{ ticket.status }}
+              </v-chip>
             </div>
           </v-flex>
         </v-layout>
