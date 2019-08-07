@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <h1 class="subheading grey--text">This is the Dashboard page</h1>
-    <v-container class="my-5">
+    <v-container fluid class="my-5">
       <!-- sort buttons -->
       <v-layout row wrap class="mb-3 pa-3">
         <v-tooltip top>
@@ -63,9 +63,9 @@
           </v-flex>
           <v-flex xs3>
             <div>
-              <v-chip :color="ticket.color" class="caption my-2" small>
-                {{ ticket.status }}
-              </v-chip>
+              <v-chip :color="ticket.color" class="caption my-2" small>{{
+                ticket.status
+              }}</v-chip>
             </div>
           </v-flex>
         </v-layout>

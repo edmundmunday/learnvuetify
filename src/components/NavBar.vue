@@ -17,6 +17,7 @@
       <v-spacer></v-spacer>
 
       <Popup @success="deviceAdded" />
+      <CreateLocationPopup @success="locationAdded" />
 
       <!-- menu button -->
       <v-menu offset-y>
@@ -69,9 +70,9 @@
             <v-icon class="white--text">mdi-{{ link.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title class="white--text">{{
-              link.text
-            }}</v-list-item-title>
+            <v-list-item-title class="white--text">
+              {{ link.text }}
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -81,6 +82,7 @@
 
 <script>
 import Popup from "@/components/Popup.vue";
+import CreateLocationPopup from "@/components/CreateLocationPopup.vue";
 export default {
   data() {
     return {
@@ -88,18 +90,24 @@ export default {
       links: [
         { icon: "view-dashboard", text: "Dashboard", route: "dashboard" },
         { icon: "cellphone", text: "Devices", route: "devices" },
-        { icon: "receipt", text: "Tickets", route: "tickets" }
+        { icon: "receipt", text: "Tickets", route: "tickets" },
+        { icon: "map-marker", text: "Locations", route: "locations" }
       ],
       snackbar: false,
       text: "Hello, I'm a snackbar"
     };
   },
   components: {
-    Popup
+    Popup,
+    CreateLocationPopup
   },
   methods: {
     deviceAdded() {
       this.text = "Device Successfully Added!";
+      this.snackbar = true;
+    },
+    locationAdded() {
+      this.text = "Location Successfully Added!";
       this.snackbar = true;
     }
   }

@@ -1,7 +1,11 @@
 <template>
   <div class="devices">
-    <h1 class="subheading grey--text">This is the Devices page</h1>
-    <v-container class="my-5">
+    <v-container fluid>
+      <v-layout class="mb-3 ml-3 mr-3" row wrap>
+        <v-flex xs12>
+          <h1 class="subheading grey--text">This is the Devices page</h1>
+        </v-flex>
+      </v-layout>
       <!-- row -->
       <v-layout row wrap>
         <!-- cards -->

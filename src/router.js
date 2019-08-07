@@ -4,14 +4,14 @@ import Dashboard from "@/views/Dashboard.vue";
 import Devices from "@/views/Devices.vue";
 import Tickets from "@/views/Tickets.vue";
 import Device from "@/views/Device.vue";
+import Locations from "@/views/Locations.vue";
 
 Vue.use(Router);
 
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: "/",
       name: "dashboard",
       component: Dashboard
@@ -31,6 +31,11 @@ export default new Router({
       name: "device",
       component: Device,
       props: true
+    },
+    {
+      path: "/locations",
+      name: "locations",
+      component: Locations
     }
   ]
 });
