@@ -1,9 +1,5 @@
 <template>
   <div>
-    <v-snackbar v-model="snackbar" color="success" right>
-      {{ text }}
-      <v-btn text @click="snackbar = false">Close</v-btn>
-    </v-snackbar>
     <!-- App header bar -->
     <v-app-bar app>
       <v-app-bar-nav-icon
@@ -15,9 +11,11 @@
         <span>Management</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-
+      <CreateDeviceModelPopup
+        entityDb="deviceModel"
+        entityTitle="Device Model"
+      />
       <Popup @success="deviceAdded" />
-      <CreateLocationPopup @success="locationAdded" />
 
       <!-- menu button -->
       <v-menu offset-y>
@@ -70,9 +68,9 @@
             <v-icon class="white--text">mdi-{{ link.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title class="white--text">
-              {{ link.text }}
-            </v-list-item-title>
+            <v-list-item-title class="white--text">{{
+              link.text
+            }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -82,7 +80,7 @@
 
 <script>
 import Popup from "@/components/Popup.vue";
-import CreateLocationPopup from "@/components/CreateLocationPopup.vue";
+import CreateDeviceModelPopup from "@/components/devices/deviceModels/CreateDeviceModelPopup.vue";
 export default {
   data() {
     return {
@@ -91,23 +89,22 @@ export default {
         { icon: "view-dashboard", text: "Dashboard", route: "dashboard" },
         { icon: "cellphone", text: "Devices", route: "devices" },
         { icon: "receipt", text: "Tickets", route: "tickets" },
-        { icon: "map-marker", text: "Locations", route: "locations" }
-      ],
-      snackbar: false,
-      text: "Hello, I'm a snackbar"
+        { icon: "map-marker", text: "Locations", route: "locations" },
+        {
+          icon: "factory",
+          text: "Device Manufacturers",
+          route: "deviceManufacturers"
+        }
+      ]
     };
   },
   components: {
     Popup,
-    CreateLocationPopup
+    CreateDeviceModelPopup
   },
   methods: {
     deviceAdded() {
       this.text = "Device Successfully Added!";
-      this.snackbar = true;
-    },
-    locationAdded() {
-      this.text = "Location Successfully Added!";
       this.snackbar = true;
     }
   }

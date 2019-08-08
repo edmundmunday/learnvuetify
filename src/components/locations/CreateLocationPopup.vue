@@ -101,7 +101,7 @@ export default {
           city: this.city,
           country: this.country,
           name: this.name,
-          postcode: this.postCode,
+          postCode: this.postCode,
           state: this.state
         };
         this.saving = true;

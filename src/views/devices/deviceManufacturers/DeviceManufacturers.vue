@@ -1,5 +1,5 @@
 <template>
-  <div class="locations">
+  <div class="deviceManufacturer">
     <v-snackbar v-model="snackbar" color="success" right>
       {{ text }}
       <v-btn text @click="snackbar = false">Close</v-btn>
@@ -9,12 +9,14 @@
         <v-flex xs12>
           <v-card>
             <v-card-title primary-title>
-              Locations
+              Device Manufacturer
               <v-spacer></v-spacer>
-              <CreateLocationPopup @success="locationAdded" />
+              <CreateDeviceManufacturerPopup
+                @success="deviceManufacturerAdded"
+              />
             </v-card-title>
             <ejs-grid
-              :dataSource="locations"
+              :dataSource="deviceManufacturers"
               :allowSorting="true"
               :allowReordering="true"
               :allowPaging="true"
@@ -46,19 +48,8 @@
                   :isPrimaryKey="true"
                 ></e-column>
 
-                <e-column field="name" headerText="Name"></e-column>
-                <e-column
-                  field="addressLine1"
-                  headerText="Address Line 1"
-                ></e-column>
-                <e-column
-                  field="addressLine2"
-                  headerText="Address Line 2"
-                ></e-column>
-                <e-column field="city" headerText="City"></e-column>
-                <e-column field="state" headerText="State"></e-column>
-                <e-column field="postCode" headerText="Postcode"></e-column>
-                <e-column field="country" headerText="Country"></e-column>
+                <e-column field="title" headerText="Title"></e-column>
+
                 <e-column headerText="Manage" :commands="commands"></e-column>
               </e-columns>
             </ejs-grid>
@@ -71,7 +62,7 @@
 
 <script>
 import db from "@/firebase.js";
-import CreateLocationPopup from "@/components/locations/CreateLocationPopup.vue";
+import CreateDeviceManufacturerPopup from "@/components/devices/deviceManufacturers/CreateDeviceManufacturerPopup.vue";
 import {
   Page,
   Sort,
@@ -89,7 +80,7 @@ import {
 export default {
   data() {
     return {
-      locations: [],
+      deviceManufacturers: [],
       selected: [],
       loading: true,
       snackbar: false,
@@ -144,7 +135,7 @@ export default {
     ]
   },
   components: {
-    CreateLocationPopup
+    CreateDeviceManufacturerPopup
   },
   methods: {
     //this is called when "actionBegin" is emitted from the grid
@@ -153,16 +144,10 @@ export default {
         //if the event requestType is "save"
         let id = event.primaryKeyValue[0];
         let data = {
-          addressline1: event.data.addressLine1,
-          addressLine2: event.data.addressLine2,
-          city: event.data.city,
-          country: event.data.country,
-          name: event.data.name,
-          postCode: event.data.postCode,
-          state: event.data.state
+          title: event.data.title
         };
         //update the record in Firebase
-        db.collection("locations")
+        db.collection("deviceManufacturers")
           .doc(id)
           .set(data, { merge: true })
           .then(() => {
@@ -172,7 +157,7 @@ export default {
         //or if the event requestType is "delete"
         let id = event.data[0].id;
         //Delete the record from the db
-        db.collection("locations")
+        db.collection("deviceManufacturers")
           .doc(id)
           .delete()
           .then(() => {});
@@ -186,20 +171,20 @@ export default {
         this.$refs.grid.pdfExport();
       }
     },
-    //this gets called when a new location is added
-    locationAdded() {
-      this.text = "Location Successfully Added!";
+    //this gets called when a new manufacturer is added
+    deviceManufacturerAdded() {
+      this.text = "Device Manufacturer Successfully Added!";
       this.snackbar = true;
     }
   },
   //This runs when the component is created
   created() {
-    db.collection("locations").onSnapshot(response => {
-      const locationsArray = [];
+    db.collection("deviceManufacturers").onSnapshot(response => {
+      const deviceManufacturersArray = [];
       response.forEach(response => {
-        locationsArray.push({ ...response.data(), id: response.id });
+        deviceManufacturersArray.push({ ...response.data(), id: response.id });
       });
-      this.locations = locationsArray;
+      this.deviceManufacturers = deviceManufacturersArray;
       this.loading = false;
     });
   }
