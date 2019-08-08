@@ -6,12 +6,12 @@ documentKey="{name of the key that you want to use as the text against each sele
 
 <template>
   <div>
-    <v-select
+    <v-autocomplete
       v-model="selected"
       :items="listItems"
       :label="collectionTitle"
       @change="select"
-    ></v-select>
+    ></v-autocomplete>
   </div>
 </template>
 
