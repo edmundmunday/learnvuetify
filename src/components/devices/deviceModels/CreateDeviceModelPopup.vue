@@ -20,7 +20,7 @@
             id="deviceModelInput"
             :rules="rules"
           ></v-text-field>
-          <CollectionSelect
+          <CollectionAutocomplete
             collection="deviceManufacturers"
             collectionTitle="Device Manufacturers"
             documentKey="title"
@@ -43,7 +43,7 @@
 
 <script>
 import db from "@/firebase.js";
-import CollectionSelect from "@/components/CollectionSelect.vue";
+import CollectionAutocomplete from "@/components/CollectionAutocomplete.vue";
 
 export default {
   data() {
@@ -57,7 +57,7 @@ export default {
   },
   props: ["entityDb", "entityTitle"],
   components: {
-    CollectionSelect
+    CollectionAutocomplete
   },
   methods: {
     submit() {
