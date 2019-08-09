@@ -4,8 +4,10 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import { GridPlugin } from "@syncfusion/ej2-vue-grids";
+import { AutoCompletePlugin } from "@syncfusion/ej2-vue-dropdowns";
+import { firestorePlugin } from "vuefire";
 
-Vue.use(GridPlugin);
+Vue.use(GridPlugin, AutoCompletePlugin, firestorePlugin);
 Vue.config.productionTip = false;
 
 new Vue({

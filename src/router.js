@@ -5,6 +5,7 @@ import Devices from "@/views/Devices.vue";
 import Tickets from "@/views/Tickets.vue";
 import Device from "@/views/Device.vue";
 import DeviceManufacturers from "@/views/devices/deviceManufacturers/DeviceManufacturers.vue";
+import DeviceModels from "@/views/devices/deviceModels/DeviceModels.vue";
 import Locations from "@/views/Locations.vue";
 
 Vue.use(Router);
@@ -22,6 +23,11 @@ export default new Router({
       path: "/devices/devicemanufacturers",
       name: "deviceManufacturers",
       component: DeviceManufacturers
+    },
+    {
+      path: "/devices/devicemodels",
+      name: "deviceModels",
+      component: DeviceModels
     },
     {
       path: "/devices",

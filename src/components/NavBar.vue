@@ -12,7 +12,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <CreateDeviceModelPopup
-        entityDb="deviceModel"
+        entityDb="deviceModels"
         entityTitle="Device Model"
       />
       <Popup @success="deviceAdded" />
@@ -94,6 +94,11 @@ export default {
           icon: "factory",
           text: "Device Manufacturers",
           route: "deviceManufacturers"
+        },
+        {
+          icon: "alpha-m-box-outline",
+          text: "Device Models",
+          route: "deviceModels"
         }
       ]
     };

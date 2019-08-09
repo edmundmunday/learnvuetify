@@ -32,6 +32,8 @@ export default {
       this.$emit("select", this.selected);
     }
   },
+  //text is what gets rendered, value is the 'reference' of the document
+  //and is what gets passed back
   created() {
     db.collection(this.collection).onSnapshot(response => {
       const listItems = [];
