@@ -11,10 +11,6 @@
         <span>Management</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <CreateDeviceModelPopup
-        entityDb="deviceModels"
-        entityTitle="Device Model"
-      />
       <Popup @success="deviceAdded" />
 
       <!-- menu button -->
